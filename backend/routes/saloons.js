@@ -1,0 +1,34 @@
+const Saloon = require('../models/saloonModel')
+const express = require('express');
+const { createSaloon, updateSaloon, deleteSaloon, getSaloon,getSaloonCity, getAllSaloon, countByService, countByCity, getSlots } = require('../controllers/saloonControllers');
+const { verifyAdmin, verifyVendor } = require('../utils/verifyToken');
+
+
+const router = express.Router();
+
+//create
+router.post('/', verifyAdmin ,createSaloon);
+
+//update
+router.put('/:id', verifyAdmin , updateSaloon);
+
+//delete
+
+router.delete('/:id', verifyAdmin, deleteSaloon);
+   
+//get
+
+router.get('/find/:id', getSaloonCity);
+router.get('/finds/:id', getSaloon);
+
+
+
+//get all
+
+router.get('/', getAllSaloon);
+router.get('/countByService', countByService);
+router.get('/countByCity', countByCity);
+router.get('/slot/:id',getSlots)
+
+
+module.exports = router;

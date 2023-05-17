@@ -24,6 +24,23 @@ const updateSaloon = async(req,res,next)=>{
     }  
 }
 
+const updateSaloonStatus = async (req, res, next) => {
+    console.log("222-22-222-000",req.params.id,req.body.status);
+  try {
+    const updatedUserStatus = await Saloon.findByIdAndUpdate(
+      req.params.id,
+      { $set: { status: req.body.status } },
+      { new: true }
+    );
+    res.status(200).json(updatedUserStatus);
+  } catch (err) {
+    res.status(500).json(err);
+    next(err);
+  }
+};
+
+
+
 const deleteSaloon = async(req,res,next)=>{
      try {
        await  Saloon.findByIdAndDelete(req.params.id) 
@@ -117,5 +134,5 @@ const getSlots = async (req,res,next)=>{
 }
 
 
-module.exports= { createSaloon, updateSaloon, deleteSaloon, getSaloon,getSaloonCity, getAllSaloon, countByService, countByCity, getSlots };
+module.exports= { createSaloon, updateSaloon, deleteSaloon, getSaloon,getSaloonCity, getAllSaloon, updateSaloonStatus, countByService, countByCity, getSlots };
 

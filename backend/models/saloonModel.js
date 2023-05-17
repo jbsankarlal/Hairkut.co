@@ -14,6 +14,7 @@ const saloonSchema = mongoose.Schema({
     ratings:{type: Number, min: 0,max:5},
     slot:{type:[String]},
     featured:{type: Boolean, default:false},
+    status:{type:Boolean,default:true},
     
 })
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, updateUser, deleteUser, getUser, getAllUser } = require('../controllers/userControllers');
+const { createUser, updateUser, deleteUser, getUser, getAllUser, updateUserStatus } = require('../controllers/userControllers');
 const { verifyToken, verifyUser, verifyAdmin } = require('../utils/verifyToken');
 const User = require("../models/userModel")
 
@@ -23,7 +23,8 @@ router.get('/checkadmin/:id', verifyAdmin, (req,res,next)=>{
 router.post('/',createUser);
 
 //update
-router.put('/:id', verifyUser ,updateUser);
+router.put('/:id' ,updateUser);
+router.put('/status/:id' ,updateUserStatus);
 
 //delete
 router.delete('/:id', verifyUser, deleteUser);
@@ -32,6 +33,6 @@ router.delete('/:id', verifyUser, deleteUser);
 router.get('/:id', verifyUser,  getUser);
 
 //get all
-router.get('/', verifyAdmin , getAllUser);
+router.get('/' , getAllUser);
 
 module.exports = router;

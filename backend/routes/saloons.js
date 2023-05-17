@@ -17,7 +17,7 @@ router.put('/:id', verifyAdmin , updateSaloon);
 router.delete('/:id', verifyAdmin, deleteSaloon);
    
 //get
-
+router.get('/', getAllSaloon);
 router.get('/find/:id', getSaloonCity);
 router.get('/finds/:id', getSaloon);
 

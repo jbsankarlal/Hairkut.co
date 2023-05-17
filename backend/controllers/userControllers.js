@@ -24,6 +24,22 @@ const updateUser = async(req,res,next)=>{
     }  
 }
 
+const updateUserStatus = async (req, res, next) => {
+    console.log("222-22-222-000",req.params.id,req.body.status);
+  try {
+    const updatedUserStatus = await User.findByIdAndUpdate(
+      req.params.id,
+      { $set: { status: req.body.status } },
+      { new: true }
+    );
+    res.status(200).json(updatedUserStatus);
+  } catch (err) {
+    res.status(500).json(err);
+    next(err);
+  }
+};
+
+
 const deleteUser = async(req,res,next)=>{
      try {
        await  User.findByIdAndDelete(req.params.id) 
@@ -47,6 +63,7 @@ const getUser = async(req,res,next)=>{
 }
 
 const getAllUser = async(req,res,next)=>{
+    console.log("3333---33333----3333");
     try {
        const user = await  User.find() 
        res.status(200).json(user)
@@ -57,5 +74,5 @@ const getAllUser = async(req,res,next)=>{
     }
 }
 
-module.exports= { createUser, updateUser, deleteUser, getUser, getAllUser };
+module.exports= { createUser, updateUser, deleteUser, getUser, getAllUser , updateUserStatus};
 

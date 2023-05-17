@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const register = async(req,res,next)=>{
 try {
+    console.log("10101its comingg");
 var salt = bcrypt.genSaltSync(10);
 var hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -14,6 +15,7 @@ var hash = bcrypt.hashSync(req.body.password, salt);
         email:req.body.email,
         mobile:req.body.mobile,
         password:hash,
+        gender:req.body.gender
     })
 
     await newUser.save();
